@@ -1,32 +1,28 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
-  createHashRouter,
+  createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
 import App from './App'
 import ErrorPage from './ErrorPage';
-import { loader } from './loader';
-import { Home } from './Home';
 
 
 const rootElement = document.getElementById('root')
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <App />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "model/:model",
-        errorElement: <ErrorPage />,
-        loader: loader,
-        element: <App />,
-      },
-    ],
   },
 ]);
+
+// {/* <HashRouter>
+  // <Route path='/' component={ Home } exact />
+  // <Route path='/about' component={ About } exact />
+  // {/*...*/}
+// </HashRouter> */}
 
 if (rootElement) {
   createRoot(rootElement).render(

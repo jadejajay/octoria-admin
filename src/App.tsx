@@ -7,7 +7,7 @@ import {
   Clone,
   Image,
 } from "@react-three/drei";
-import { useLoaderData } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 type ModelProps = {
   url: string;
@@ -18,20 +18,23 @@ const Model = ({ url }: ModelProps) => {
   return <Clone object={scene} position={[0, 0, 0]} />;
 };
 export default function App() {
-  const param = useLoaderData()  as any;
+  const location = useLocation()
+  const queryParameters = new URLSearchParams(location.search)
+  const param = queryParameters.get("model") ? `http://itekindia.com/octoria/models/getmodel.php?file=${queryParameters.get("model")}`: "http://itekindia.com/octoria/models/getmodel.php?file=shoe-draco.glb";
+  const param2 = queryParameters.get("env") ? `http://itekindia.com/octoria/models/gethdr.php?file=${queryParameters.get("env")}`: "http://itekindia.com/octoria/models/gethdr.php?file=old_room.exr";
   
   return (
     <>
       <Canvas camera={{ position: [0.2, 0.2, -0.2], near: 0.025 }}>
         <Environment
-          files="http://itekindia.com/octoria/models/gethdr.php?file=old_room.exr"
+          files={param2}
           background
         />
         <Suspense>
           <pointLight position={[10, 10, -10]} intensity={1000} />
           <pointLight position={[10, -10, 10]} intensity={1000} />
           <pointLight position={[-10, 10, 10]} intensity={1000} />
-          <Model url={param?.url} />
+          <Model url={param} />
           <Image url="http://itekindia.com/octoria/models/getimage.php?file=logo_big.png" transparent position={[0, 0, -5]} />
           <Image url="http://itekindia.com/octoria/models/getimage.php?file=logo.png" transparent position={[0, 0, 5]} />
         </Suspense>
