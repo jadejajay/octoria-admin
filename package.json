@@ -4,6 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@react-three/drei": "^9.88.13",
     "@react-three/fiber": "^8.15.10",
     "@react-three/xr": "^5.7.1",
@@ -31,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "npx http-server build"
   },
   "eslintConfig": {
     "extends": [
