@@ -12,7 +12,7 @@ import ErrorPage from './ErrorPage';
 const rootElement = document.getElementById('root')
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/octoria/xrservice",
     element: <App />,
     errorElement: <ErrorPage />,
   },

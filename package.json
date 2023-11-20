@@ -16,6 +16,7 @@
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@types/three": "^0.158.2",
+    "html2canvas": "^1.4.1",
     "leva": "^0.9.35",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

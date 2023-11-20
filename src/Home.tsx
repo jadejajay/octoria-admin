@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom";
 export const Home = () => {
   return (
-    <div>
-      loading please wait
+    <>
+      loading please wait 
+     
       <div
         style={{
           position: "absolute",
@@ -10,10 +11,11 @@ export const Home = () => {
           left: "0",
           right: "0",
           bottom: "0",
+          zIndex: -50
         }}
       >
         <Outlet />
       </div>
-    </div>
+    </>
   );
 };
