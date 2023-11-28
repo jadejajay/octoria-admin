@@ -1,12 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>artixon 3d model viewer</title>
-		<meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-	</head>
-	<body>
-		<div id="root"></div>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>artixon 3d model viewer</title>
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
+    <script>
+      // Listen for messages from the React Native side
+      document.addEventListener("message", (event) => {
+        const receivedMessage = event.data;
+        // Check if the received message is a request to capture the content
+        if (receivedMessage === "screenshot") {
+          // Capture the content of the element with the ID 'root'
+          // const rootElement = document.getElementById('root');
+          // var context = canvas.getContext('2d');
+          // var canvas = document.getElementById("root");
+          // var base64Image = context.canvas.toDataURL("image/png");
+          // const base64Image = getBase64Image(rootElement);
+          // alert("screenshot")
+		       var node = document.getElementById('root');
+		       let base64Image = "";
+               domtoimage
+                 .toPng(node)
+                 .then(function (dataUrl) {
+		      	  const base64Image = dataUrl.replace(/^data:image\/\w+;base64,/, '');
+		      	  window.ReactNativeWebView.postMessage(base64Image);
+                 })
+                 .catch(function (error) {
+                   alert(error);
+                 });
+               // Post the base64-encoded image data back to the React Native side
+             }
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>

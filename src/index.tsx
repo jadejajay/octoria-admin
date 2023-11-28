@@ -18,12 +18,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-// {/* <HashRouter>
-  // <Route path='/' component={ Home } exact />
-  // <Route path='/about' component={ About } exact />
-  // {/*...*/}
-// </HashRouter> */}
-
 if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>
