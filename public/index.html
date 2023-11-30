@@ -11,18 +11,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
     <script>
-      // Listen for messages from the React Native side
       document.addEventListener("message", (event) => {
         const receivedMessage = event.data;
-        // Check if the received message is a request to capture the content
         if (receivedMessage === "screenshot") {
-          // Capture the content of the element with the ID 'root'
-          // const rootElement = document.getElementById('root');
-          // var context = canvas.getContext('2d');
-          // var canvas = document.getElementById("root");
-          // var base64Image = context.canvas.toDataURL("image/png");
-          // const base64Image = getBase64Image(rootElement);
-          // alert("screenshot")
 		       var node = document.getElementById('root');
 		       let base64Image = "";
                domtoimage
@@ -34,7 +25,6 @@
                  .catch(function (error) {
                    alert(error);
                  });
-               // Post the base64-encoded image data back to the React Native side
              }
       });
     </script>

@@ -7,7 +7,7 @@ export default function ErrorPage() {
   return (
     <div id="error-page">
       <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
+      <p>You are an Imposter. You are not allowed just go away and learn some basic to access webapp.</p>
       <p>
         <i>{error.statusText || error.message}</i>
       </p>

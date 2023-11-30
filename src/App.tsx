@@ -18,27 +18,10 @@ const Model = ({ url }: ModelProps) => {
   return <Clone object={scene} position={[0, 0, 0]} />;
 };
 export default function App() {
-  // useEffect(() => {
-  //   const messageListener = window.addEventListener('message', (nativeEvent) => {
-  //     if (nativeEvent?.data === 'screenshot') {
-  //       document.body.focus();
-  //     }
-  //   });
-  //   return messageListener;
-  // }, []);
-  // useEffect(() => {
-  //   const messageListener = document.addEventListener('message', (nativeEvent) => {
-  //     //@ts-ignore
-  //     if (nativeEvent?.data === 'screenshot') {
-  //       document.body.focus();
-  //     }
-  //   });
-  //   return messageListener;
-  // }, []);
   const location = useLocation()
   const queryParameters = new URLSearchParams(location.search)
-  const param = queryParameters.get("model") ? `${queryParameters.get("model")}`: "http://itekindia.com/octoria/models/getmodel.php?file=handle.glb";
-  const param2 = queryParameters.get("env") ? `${queryParameters.get("env")}`: "http://itekindia.com/octoria/models/gethdr.php?file=old_room.exr";
+  const param = queryParameters.get("model") ? `http://itekindia.com/octoria/models/getmodel.php?file=${queryParameters.get("model")}`: "http://itekindia.com/octoria/models/getmodel.php?file=handle.glb";
+  const param2 = queryParameters.get("env") ? `http://itekindia.com/octoria/models/gethdr.php?file=${queryParameters.get("env")}`: "http://itekindia.com/octoria/models/gethdr.php?file=old_room.exr";
   return (
     <>
       <Canvas gl={{ preserveDrawingBuffer: true }} style={{zIndex:0}} camera={{ position: [0.2, 0.2, -0.2], near: 0.025 }}>
@@ -46,7 +29,6 @@ export default function App() {
           files={param2}
           background
         />
-        {/* <Scene /> */}
         <Suspense>
           <pointLight position={[10, 10, -10]} intensity={1000} />
           <pointLight position={[10, -10, 10]} intensity={1000} />
@@ -61,34 +43,3 @@ export default function App() {
   );
 }
 
-// function Scene() {
-//   const gl = useThree((state) => state.gl)
-//   useEffect(() => () => {
-//     const messageListener = document.addEventListener('message', (nativeEvent) => {
-//       //@ts-ignore
-//       if (nativeEvent?.data === 'screenshot') {
-//         alert("screenshot123")
-//         const url = gl.domElement.toDataURL('image/png')
-//         const base64Data = url.replace(/^data:image\/\w+;base64,/, '');
-//         //@ts-ignore
-//         window?.ReactNativeWebView?.postMessage(base64Data);
-//       }
-//     });
-//     return messageListener;
-//   }, []);
-//   useEffect(() => () => {
-//     const messageListener = window.addEventListener('message', (nativeEvent) => {
-//       if (nativeEvent?.data === 'screenshot') {
-//         alert("screenshot123456")
-//         const url = gl.domElement.toDataURL('image/png')
-//         const base64Data = url.replace(/^data:image\/\w+;base64,/, '');
-//         //@ts-ignore
-//         window?.ReactNativeWebView?.postMessage(base64Data);
-//       }
-//     });
-//     return messageListener;
-//   }, []);
-//   return (
-//     <></>
-//   )
-// }
