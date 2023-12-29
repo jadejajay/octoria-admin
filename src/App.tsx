@@ -8,7 +8,6 @@ import {
   Clone,
   Image,
 } from "@react-three/drei";
-import { VRButton, ARButton, XR } from '@react-three/xr'
 import { useLocation } from "react-router-dom";
 type ModelProps = {
   url: string;
@@ -25,13 +24,11 @@ export default function App() {
   const param2 = queryParameters.get("env") ? `https://ibaisindia.co.in/octoria/api/products/model/gethdr.php?file=${queryParameters.get("env")}`: "https://ibaisindia.co.in/octoria/api/products/model/gethdr.php?file=old_room.exr";
   return (
     <>
-      <ARButton />
       <Canvas gl={{ preserveDrawingBuffer: true }} style={{zIndex:0}} camera={{ position: [0.2, 0.2, -0.2], near: 0.025 }}>
-        {/* <Environment
+        <Environment
           files={param2}
           background
-        /> */}
-        <XR>
+        />
         <Suspense>
           <pointLight position={[10, 10, -10]} intensity={1000} />
           <pointLight position={[10, -10, 10]} intensity={1000} />
@@ -41,7 +38,6 @@ export default function App() {
           <Image url="https://ibaisindia.co.in/octoria/api/products/model/getimage.php?file=logo.png" transparent position={[0, 0, 5]} />
         </Suspense>
         <OrbitControls autoRotate={false} />
-        </XR>
       </Canvas>
     </>
   );
